@@ -1,30 +1,38 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+<!--   <div>{{$store.state.username}}</div>
+  <div>{{$store.getters['newName']}}</div>
+  <button @click='fn'>点击更改</button> -->
+  <!-- state加不加命名空间都是一样的 -->
+  <div>{{store.state.moduleA.username}}</div>
+  <div>{{store.state.moduleB.username}}</div>
+  <!-- 除了state以外,不加命名空间会挂在全局,加了命名空间不能用.使用,要用[]加名字,模块与方法间用/ -->
+  <div>{{store.getters.newName}}</div>
+  <div>{{store.getters['moduleB/newName']}}</div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+/* import { useStore } from 'vuex'
+export default {
+  name: 'App',
+  setup () {
+    const store = useStore()
+    function fn () {
+      store.commit('changeName')
     }
+    console.log(store.state.username)
+    return { fn }
+  }
+} */
+import { useStore } from 'vuex'
+export default {
+  name: 'App',
+  setup () {
+    const store = useStore()
+    return { store }
   }
 }
+</script>
+
+<style>
+
 </style>
