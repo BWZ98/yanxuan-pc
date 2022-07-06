@@ -3,7 +3,7 @@ export default {
   state () {
     return {
       profile: {
-        name: '',
+        account: '',
         token: ''
       }
     }
